@@ -1,0 +1,63 @@
+# docker-compose.yml - PARA DESARROLLO LOCAL
+
+services:
+  # Base de datos PostgreSQL solo para desarrollo
+  postgres:
+    image: postgres:15-alpine
+    container_name: dev-postgres
+    environment:
+      POSTGRES_DB: password-manager
+      POSTGRES_USER: admipassword
+      POSTGRES_PASSWORD: admipassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admipassword -d password-manager"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ../backend
+      target: development  # Importante: usamos la etapa de desarrollo
+    container_name: dev-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../backend:/app  # Montamos el código para hot-reload
+      - /app/__pycache__  # Evitamos montar pycache
+    environment:
+      - DATABASE_URL=postgresql://admipassword:admipassword@postgres:5432/password-manager
+      - ENVIRONMENT=development
+    env_file:
+      - ../backend/.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build:
+      context: ../frontend
+      target: development  # Importante: usamos la etapa de desarrollo
+    container_name: dev-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../frontend:/app  # Montamos el código para hot-reload
+      - /app/node_modules  # Evitamos montar node_modules (usa los del contenedor)
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+      - NODE_ENV=development
+    env_file:
+      - ../frontend/.env
+    depends_on:
+      - backend
+    stdin_open: true
+    tty: true
+
+volumes:
+  postgres_data:
