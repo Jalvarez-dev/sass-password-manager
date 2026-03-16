@@ -17,6 +17,8 @@ class PasswordEntry(SQLModel, table=True):
   username_attr:str #nombre de usuario del sitio
   encrypted_password: str # AQUI CIFRADO AES-256
 
+  # Agregar descripcion al vault
+  description:str
   #Relacion con Categoria
   category_id:int=Field(foreign_key="category.id")
   category:Optional[Category]=Relationship(back_populates="entries")

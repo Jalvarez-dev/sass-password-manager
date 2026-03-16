@@ -19,6 +19,7 @@ class VaultCreate(BaseModel):
   url:Optional[str]=None
   username_attr:str
   password_plain:str #recibimos la contraseña plana del front
+  description:str 
   category_id:int
 
 class VaultPublic(BaseModel):
@@ -27,6 +28,7 @@ class VaultPublic(BaseModel):
   url: Optional[str]
   username_attr: str
   password_decrypted: str # Entregamos la contraseña ya descifrada
+  description:str
   category_id: int
   expires_at: datetime
 

@@ -27,6 +27,7 @@ class VaultService:
       url=entry_in.url,
       username_attr=entry_in.username_attr,
       encrypted_password=encrypted,
+      description=entry_in.description,
       category_id=entry_in.category_id,
       user_id=user_id
     )
