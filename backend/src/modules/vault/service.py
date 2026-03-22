@@ -39,7 +39,7 @@ class VaultService:
   @staticmethod
   def get_user_entries(db:Session, user_id:int):
     """Obtiene todas las entradas de un usuario especifico"""
-    statement=select(PasswordEntry).where(PasswordEntry.id==user_id)
+    statement=select(PasswordEntry).where(PasswordEntry.user_id==user_id)
     results=db.exec(statement).all()
     
     return results
