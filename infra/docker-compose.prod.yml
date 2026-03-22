@@ -1,34 +1,63 @@
-# docker-compose.prod.yml - PARA PRODUCCIÓN
-# En producción, NO incluimos PostgreSQL porque usas Supabase
-
 services:
+  # ─── BACKEND (SOLO INTERNO, NO EXPUESTO) ───
   backend:
     build:
-      context: ./backend
-      target: production  # Usamos la etapa de producción
+      context: ../backend
+      target: production
     container_name: prod-backend
-    ports:
-      - "8000:8000"
+    # ❌ SIN ports: (no exponemos directamente)
+    
     environment:
-      - DATABASE_URL=${DATABASE_URL}  # Tomada de variables de entorno del host/Supabase
+      - DATABASE_URL=${DATABASE_URL}  # De Supabase
       - ENVIRONMENT=production
+      # Opcional: variables adicionales
     env_file:
-      - ./backend/.env
+      - ../backend/.env.prod  # ✅ Archivo específico para producción
+    
     restart: unless-stopped
-    # No montamos volúmenes de código en producción
+    deploy:
+      resources:
+        limits:
+          memory: 400M  # 🔴 CRÍTICO para tu RAM de 3.3 GB
+        reservations:
+          memory: 200M
+    networks:
+      - app-network  # ✅ Para comunicarse con Nginx Proxy Manager
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
+  # ─── FRONTEND (React) ───
   frontend:
     build:
-      context: ./frontend
-      target: production  # Usamos la etapa de producción
+      context: ../frontend
+      target: production
     container_name: prod-frontend
-    ports:
-      - "3000:3000"
+    # ❌ QUITAMOS: ports: - "3000:3000" (Nginx manejará el routing)
+    
     environment:
-      - REACT_APP_API_URL=${REACT_APP_API_URL}  # URL de tu backend en producción
-      - NODE_ENV=production
+      - VITE_API_URL=${VITE_API_URL}  # URL del backend (vía Nginx)
+      - VITE_APP_ENV=production
     env_file:
-      - ./frontend/.env
+      - ../frontend/.env.prod  # ✅ Archivo específico para producción
+    
     restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 300M  # 🔴 CRÍTICO para tu RAM
+        reservations:
+          memory: 150M
+    networks:
+      - app-network
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
+
+# ─── REDES ───
+networks:
+  app-network:
+    external: true  # ✅ Usa la red que ya creamos para Nginx + Cloudflared
