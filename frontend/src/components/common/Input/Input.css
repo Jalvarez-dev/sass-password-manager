@@ -1,0 +1,108 @@
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.input__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.input__required {
+  color: #ef4444;
+}
+
+.input__container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input__field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: #0f172a;
+  border: 2px solid #334155;
+  border-radius: 8px;
+  color: #f8fafc;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.input__field::placeholder {
+  color: #64748b;
+}
+
+.input__field:hover:not(:disabled) {
+  border-color: #475569;
+}
+
+.input__field:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.input__field:disabled {
+  background: #1e293b;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+/* Iconos */
+.input-wrapper--icon-left .input__field {
+  padding-left: 2.75rem;
+}
+
+.input-wrapper--icon-right .input__field {
+  padding-right: 2.75rem;
+}
+
+.input__icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  pointer-events: none;
+}
+
+.input__icon--left {
+  left: 1rem;
+}
+
+.input__icon--right {
+  right: 1rem;
+}
+
+/* Estados */
+.input-wrapper--error .input__field {
+  border-color: #ef4444;
+}
+
+.input-wrapper--error .input__field:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.input__helper {
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+.input__error {
+  font-size: 0.875rem;
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.input__error::before {
+  content: '⚠';
+}

@@ -1,0 +1,274 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #334155;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  z-index: 100;
+  gap: 1rem;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header__menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: #f8fafc;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header__logo-icon {
+  font-size: 1.75rem;
+}
+
+.header__logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Búsqueda */
+.header__search {
+  flex: 1;
+  max-width: 500px;
+  position: relative;
+}
+
+.header__search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  font-size: 1rem;
+}
+
+.header__search-input {
+  width: 100%;
+  padding: 0.625rem 2.5rem;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #f8fafc;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.header__search-input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.header__search-input::placeholder {
+  color: #64748b;
+}
+
+.header__search-clear {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #334155;
+  border: none;
+  color: #94a3b8;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Derecha */
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header__add-text {
+  display: inline;
+}
+
+.header__user {
+  position: relative;
+}
+
+.header__user-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: none;
+  border: none;
+  color: #e2e8f0;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.header__user-btn:hover {
+  background: #334155;
+}
+
+.header__avatar {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: white;
+}
+
+.header__user-name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header__user-arrow {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+/* Menú desplegable */
+.header__user-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.header__user-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  min-width: 220px;
+  overflow: hidden;
+  animation: fadeIn 0.2s ease;
+}
+
+.header__user-info {
+  padding: 1rem;
+}
+
+.header__user-email {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #94a3b8;
+  word-break: break-all;
+}
+
+.header__menu-divider {
+  height: 1px;
+  background: #334155;
+  margin: 0.5rem 0;
+}
+
+.header__menu-item {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: background 0.2s;
+}
+
+.header__menu-item:hover {
+  background: #334155;
+}
+
+.header__menu-item--danger {
+  color: #ef4444;
+}
+
+.header__menu-item--danger:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header {
+    padding: 0 1rem;
+  }
+
+  .header__menu-btn {
+    display: block;
+  }
+
+  .header__logo-text {
+    display: none;
+  }
+
+  .header__search {
+    max-width: none;
+  }
+
+  .header__add-text {
+    display: none;
+  }
+
+  .header__user-name {
+    display: none;
+  }
+
+  .header__user-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .header__search {
+    display: none;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

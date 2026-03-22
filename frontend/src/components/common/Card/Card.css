@@ -1,0 +1,63 @@
+.card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.card--hoverable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  border-color: #475569;
+}
+
+.card--clickable {
+  cursor: pointer;
+}
+
+.card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1.25rem;
+  border-bottom: 1px solid #334155;
+  gap: 1rem;
+}
+
+.card__titles {
+  flex: 1;
+  min-width: 0;
+}
+
+.card__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #f8fafc;
+  margin: 0 0 0.25rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card__subtitle {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.card__actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.card__content {
+  padding: 1.25rem;
+}
+
+/* Variante compacta */
+.card--compact .card__header,
+.card--compact .card__content {
+  padding: 1rem;
+}
