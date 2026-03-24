@@ -39,7 +39,7 @@ services:
     # ❌ QUITAMOS: ports: - "3000:3000" (Nginx manejará el routing)
     
     environment:
-      - VITE_API_URL=${VITE_API_URL}  # URL del backend (vía Nginx)
+      # - VITE_API_URL=${VITE_API_URL}  # URL del backend (vía Nginx)
       - VITE_APP_ENV=production
     env_file:
       - ../frontend/.env.prod  # ✅ Archivo específico para producción
