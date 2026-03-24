@@ -30,7 +30,7 @@ services:
       - ../backend:/app  # Montamos el código para hot-reload
       - /app/__pycache__  # Evitamos montar pycache
     environment:
-      - DATABASE_URL=postgresql://admipassword:admipassword@postgres:5432/password-manager
+      # - DATABASE_URL=postgresql://admipassword:admipassword@postgres:5432/password-manager
       - ENVIRONMENT=development
     env_file:
       - ../backend/.env
@@ -50,7 +50,7 @@ services:
       - ../frontend:/app  # Montamos el código para hot-reload
       - /app/node_modules  # Evitamos montar node_modules (usa los del contenedor)
     environment:
-      - REACT_APP_API_URL=http://localhost:8000
+      - VITE_API_URL=${VITE_API_URL}
       - NODE_ENV=development
     env_file:
       - ../frontend/.env
