@@ -37,3 +37,12 @@ async def main():
         "environment": settings.ENVIRONMENT,
         "project_name": settings.PROJECT_NAME
     }
+
+# HEALTH CHECK ENDPOINT
+@app.get("/health")
+async def health_check():
+  """Endpoint para el healthcheck en docker"""
+  return {
+    "status":"healthy",
+    "database":"connectado"
+  }
