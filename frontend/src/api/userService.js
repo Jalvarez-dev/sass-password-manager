@@ -15,7 +15,7 @@ export const userService = {
    * @returns {Promise<Object>} - Usuario creado
    */
   async register(userData) {
-    return apiClient.post('/v1/users/', {
+    return apiClient.post('/v1/users', {
       email: userData.email,
       password: userData.password,
       full_name: userData.full_name,
