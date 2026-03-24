@@ -15,7 +15,7 @@ export const userService = {
    * @returns {Promise<Object>} - Usuario creado
    */
   async register(userData) {
-    return apiClient.post('/api/v1/users/', {
+    return apiClient.post('/v1/users/', {
       email: userData.email,
       password: userData.password,
       full_name: userData.full_name,
@@ -27,7 +27,7 @@ export const userService = {
    * @returns {Promise<Object>} - Datos del usuario
    */
   async getCurrentUser() {
-    return apiClient.get('/api/v1/users/me');
+    return apiClient.get('/v1/users/me');
   },
 
   /**
@@ -38,7 +38,7 @@ export const userService = {
    */
   async updateProfile(updates) {
     // Si tu backend tiene endpoint de update, descomenta:
-    // return apiClient.put('/api/v1/users/me', updates);
+    // return apiClient.put('/v1/users/me', updates);
     throw new Error('Función no implementada en el backend');
   },
 
@@ -51,7 +51,7 @@ export const userService = {
    */
   async changePassword(currentPassword, newPassword) {
     // Si tu backend tiene endpoint de cambio de contraseña, descomenta:
-    // return apiClient.post('/api/v1/users/me/password', {
+    // return apiClient.post('/v1/users/me/password', {
     //   current_password: currentPassword,
     //   new_password: newPassword,
     // });
@@ -65,7 +65,7 @@ export const userService = {
    */
   async deleteAccount() {
     // Si tu backend tiene endpoint de eliminación, descomenta:
-    // return apiClient.delete('/api/v1/users/me');
+    // return apiClient.delete('/v1/users/me');
     throw new Error('Función no implementada en el backend');
   },
 };

@@ -13,7 +13,7 @@ export const categoryService = {
    * @returns {Promise<Array<{id: number, name: string, description: string}>>}
    */
   async getAll() {
-    return apiClient.get('/api/v1/vault/categories');
+    return apiClient.get('/v1/vault/categories');
   },
 
   /**
@@ -24,7 +24,7 @@ export const categoryService = {
    */
   async getById(id) {
     // Si existe endpoint específico:
-    // return apiClient.get(`/api/v1/vault/categories/${id}`);
+    // return apiClient.get(`/v1/vault/categories/${id}`);
     
     // Alternativa: filtrar de la lista completa
     const categories = await this.getAll();
@@ -41,7 +41,7 @@ export const categoryService = {
    * @returns {Promise<Object>} - Categoría creada
    */
   async create(categoryData) {
-    return apiClient.post('/api/v1/vault/categories', {
+    return apiClient.post('/v1/vault/categories', {
       name: categoryData.name,
       description: categoryData.description || '',
     });
@@ -56,7 +56,7 @@ export const categoryService = {
    */
   async update(id, updates) {
     // Si existe endpoint:
-    // return apiClient.put(`/api/v1/vault/categories/${id}`, updates);
+    // return apiClient.put(`/v1/vault/categories/${id}`, updates);
     throw new Error('Función no implementada en el backend');
   },
 
@@ -68,7 +68,7 @@ export const categoryService = {
    */
   async delete(id) {
     // Si existe endpoint:
-    // return apiClient.delete(`/api/v1/vault/categories/${id}`);
+    // return apiClient.delete(`/v1/vault/categories/${id}`);
     throw new Error('Función no implementada en el backend');
   },
 };
@@ -81,7 +81,7 @@ export const passwordService = {
    * @returns {Promise<Array<Object>>} - Lista de contraseñas
    */
   async getAll() {
-    return apiClient.get('/api/v1/vault/entries');
+    return apiClient.get('/v1/vault/entries');
   },
 
   /**
@@ -92,7 +92,7 @@ export const passwordService = {
    */
   async getById(id) {
     // Si existe endpoint específico:
-    // return apiClient.get(`/api/v1/vault/entries/${id}`);
+    // return apiClient.get(`/v1/vault/entries/${id}`);
     
     // Alternativa temporal:
     const passwords = await this.getAll();
@@ -112,7 +112,7 @@ export const passwordService = {
    * @returns {Promise<Object>} - Entrada creada con contraseña descifrada
    */
   async create(entryData) {
-    return apiClient.post('/api/v1/vault/entries', {
+    return apiClient.post('/v1/vault/entries', {
       site_name: entryData.site_name,
       url: entryData.url,
       username_attr: entryData.username_attr,
@@ -131,7 +131,7 @@ export const passwordService = {
    */
   async update(id, updates) {
     // Si existe endpoint:
-    // return apiClient.put(`/api/v1/vault/entries/${id}`, updates);
+    // return apiClient.put(`/v1/vault/entries/${id}`, updates);
     throw new Error('Función no implementada en el backend');
   },
 
@@ -143,7 +143,7 @@ export const passwordService = {
    */
   async delete(id) {
     // Si existe endpoint:
-    // return apiClient.delete(`/api/v1/vault/entries/${id}`);
+    // return apiClient.delete(`/v1/vault/entries/${id}`);
     throw new Error('Función no implementada en el backend');
   },
 
