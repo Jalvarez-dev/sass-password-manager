@@ -43,4 +43,4 @@ RUN npm install -g serve
 EXPOSE 3000
 
 # Servimos los archivos estáticos
-CMD ["serve", "-s", "dist", "-l", "3000"]
+CMD ["serve", "-s", "build", "--listen", "tcp://0.0.0.0:3000"]
