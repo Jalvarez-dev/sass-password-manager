@@ -6,7 +6,7 @@ class Settings(BaseSettings):
   API_V1_STR: str = "/api/v1"
 
   # se le desde el .env en la raiz de /backend
-  DATABASE_URL: str = "postgresql://user:pass@db:5432/dbname"
+  DATABASE_URL: Optional[str] = None
 
   ACCESS_TOKEN_EXPIRE_MINUTES:int=60
   SECRET_KEY: str = "LLA_SECRETA_PARA_JWT"
