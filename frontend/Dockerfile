@@ -9,7 +9,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Instalamos dependencias
-RUN npm ci --only=production
+RUN npm ci
 
 # ---------- Etapa de Desarrollo ----------
 FROM builder AS development
@@ -26,15 +26,18 @@ EXPOSE 3000
 CMD ["npm", "run", "dev"]
 
 # ---------- Etapa de Producción ----------
-FROM builder AS production
+FROM node:20-slim AS production
 
-# Copiamos el código
+WORKDIR /app
+
+# Copiar solo lo necesario desde builder
+COPY --from=builder /app/node_modules ./node_modules
 COPY . .
 
-# Construimos la aplicación para producción
+# Construimos la aplicación (vite ya está disponible)
 RUN npm run build
 
-# Instalamos un servidor estático simple para servir la app
+# Instalamos un servidor estático
 RUN npm install -g serve
 
 EXPOSE 3000
