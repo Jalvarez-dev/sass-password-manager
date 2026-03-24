@@ -50,7 +50,7 @@ services:
       - ../frontend:/app  # Montamos el código para hot-reload
       - /app/node_modules  # Evitamos montar node_modules (usa los del contenedor)
     environment:
-      - VITE_API_URL=${VITE_API_URL}
+      # - VITE_API_URL=${VITE_API_URL}
       - NODE_ENV=development
     env_file:
       - ../frontend/.env
