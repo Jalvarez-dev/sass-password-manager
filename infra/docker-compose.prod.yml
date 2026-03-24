@@ -42,7 +42,7 @@ services:
       # - VITE_API_URL=${VITE_API_URL}  # URL del backend (vía Nginx)
       - VITE_APP_ENV=production
     env_file:
-      - ../frontend/.env.prod  # ✅ Archivo específico para producción
+      - ../frontend/.env.production  # ✅ Archivo específico para producción
     
     restart: unless-stopped
     deploy:
