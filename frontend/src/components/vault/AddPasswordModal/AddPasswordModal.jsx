@@ -11,7 +11,7 @@ import { Modal } from '../../common/Modal/Modal';
 import { Button } from '../../common/Button/Button';
 import { Input } from '../../common/Input/Input';
 import { PasswordInput } from '../../common/PasswordInput/PasswordInput';
-import { AddCategoryModal } from '../../vault/AddCategoryModal';
+import { AddCategoryModal } from '../AddCategoryModal/AddCategoryModal';
 import './AddPasswordModal.css';
 
 export const AddPasswordModal = ({ isOpen, onClose }) => {

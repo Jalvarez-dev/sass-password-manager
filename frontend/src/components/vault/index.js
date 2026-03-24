@@ -3,6 +3,7 @@
  */
 
 export { PasswordCard } from './PasswordCard/PasswordCard';
+export { AddCategoryModal } from './AddCategoryModal';
 export { CategoryFilter } from './CategoryFilter/CategoryFilter';
 export { AddPasswordModal } from './AddPasswordModal/AddPasswordModal';
 export { PasswordList } from './PasswordList/PasswordList';
