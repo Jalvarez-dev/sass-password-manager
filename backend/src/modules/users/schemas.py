@@ -19,3 +19,13 @@ class UserPublic(BaseModel):
   # habilita leer los datos como atributos de un objeto (data.email) en lugar de data["email"]
   class Config:
     from_attributes=True
+
+# datos que puede venir para actualizar un usuario
+class UserUpdate(BaseModel):
+  email: Optional[EmailStr]=None
+  full_name: Optional[str]=None
+
+# datos para actualizar la contraseña del usuario
+class UserUpdatePassword(BaseModel):
+  current_password:str
+  new_password:str
