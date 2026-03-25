@@ -24,9 +24,9 @@ def on_startup():
   init_db()
 
 # Prefijo global /api/v1/users
-app.include_router(users_router, prefix=settings.API_V1_STR)
-
 app.include_router(auth_router, prefix=settings.API_V1_STR)
+
+app.include_router(users_router, prefix=settings.API_V1_STR)
 
 app.include_router(vault_router,prefix=settings.API_V1_STR)
 
